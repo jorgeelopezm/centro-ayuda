@@ -5,9 +5,13 @@ node_modules/
 app/dist/
 
 # Frontend (Next.js)
-app/.next/
+.next/
 app/next-env.d.ts
 app/*.tsbuildinfo
+app/tsc*.txt
+
+# Enlace local con la plataforma de despliegue
+.plataforma/
 
 # Backend (Python)
 __pycache__/
@@ -17,9 +21,11 @@ venv/
 *.egg-info/
 .pytest_cache/
 
-# Volcados locales de salida de tests
+# Volcados locales de salida de tests y reportes generados del harness EDD
 py_out.txt
+py_err.txt
 pytest_out.txt
+api/tests/eval/reports/*.json
 
 # Entorno / secretos
 .env
