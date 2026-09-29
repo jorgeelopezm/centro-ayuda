@@ -1,0 +1,33 @@
+{
+  "descripcion": "Baseline inicial del harness de eval del chat con RAG. El gate falla si alguna métrica cae bajo su umbral (modo 'min' usa 'margen'; modo 'max' usa 'factor'). Al mejorar una métrica, actualiza este archivo en la misma PR (spec `evaluacion-chat-rag`).",
+  "generado_en": "2026-08-19",
+  "modo_referencia": "ci",
+  "proveedor_referencia": "doble-determinista",
+  "metricas": {
+    "exactitud_veredicto": {
+      "umbral": 1.0,
+      "margen": 0.02,
+      "modo": "min"
+    },
+    "precision_citas": {
+      "umbral": 1.0,
+      "margen": 0.02,
+      "modo": "min"
+    },
+    "recall_citas": {
+      "umbral": 1.0,
+      "margen": 0.02,
+      "modo": "min"
+    },
+    "pasos_en_formato_correcto": {
+      "umbral": 1.0,
+      "margen": 0.02,
+      "modo": "min"
+    },
+    "longitud_media": {
+      "umbral": 150.0,
+      "factor": 1.1,
+      "modo": "max"
+    }
+  }
+}

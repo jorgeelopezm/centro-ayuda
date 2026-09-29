@@ -1,0 +1,201 @@
+/* Las fuentes de marca (DM Sans / DM Serif Display) las autoaloja Next con
+   `next/font` en `app/[idioma]/layout.tsx` y las expone como `--font-sans` y
+   `--font-serif`; no se cargan desde Google Fonts (la CSP `font-src 'self'` lo
+   impediría). */
+@import 'tailwindcss';
+
+/* ── Design Token: accent color ─────────────────────────────
+   Change --acento here to retheme the entire UI.
+   Value must meet WCAG AA 4.5:1 contrast on white (#fff).
+   Current: Indigo 700 (#4338CA) → contrast ratio 7.3:1 ✓
+──────────────────────────────────────────────────────────── */
+:root {
+  --acento: #4338ca;
+  --acento-hover: #3730a3;
+  --acento-claro: #eef2ff;
+  --acento-foco: #6366f1;
+  /* Paradas del degradado del banner de inicio. El layout las sobrescribe inline
+     desde la paleta servida (SSR); estos valores son la reserva si no llegan. */
+  --banner-desde: #3730a3;
+  --banner-medio: #4338ca;
+  --banner-hasta: #4f46e5;
+}
+
+/* ── Base ────────────────────────────────────────────────── */
+*,
+::before,
+::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+body {
+  font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #0f172a;
+  background-color: #f8fafc;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Focus ring — 2px solid, offset 2px, accent focus token ───── */
+/* Unificado en --acento-foco: es el mismo token que consumen las utilidades
+   `ring-[var(--acento-foco)]` de los componentes, y el servidor valida su
+   contraste (≥3:1 sobre el fondo) al guardar una paleta nueva. */
+:focus-visible {
+  outline: 2px solid var(--acento-foco);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Remove default outline only when focus-visible is supported */
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* ── Scrollbar ───────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* ── Modo noche (solo plantilla de documentación) ──────────────────────────────
+   El armazón de documentación lleva `data-tema` = `claro` | `oscuro` | `sistema` (cookie
+   `tema`, leída en servidor: sin parpadeo). En vez de repartir variantes `dark:` por cada
+   componente, dentro del armazón se redefinen las variables de color de Tailwind v4 con
+   `light-dark()`, y `color-scheme` elige el lado: `sistema` sigue la preferencia del
+   sistema sin JavaScript. Así también se adaptan los componentes compartidos (acordeón,
+   valoración, escalación) sin tocarlos, y el panel y la plantilla predeterminada —que no
+   llevan `data-tema`— no cambian.
+
+   La escala es la de slate invertida (50↔950, 100↔800…): el texto que en claro es oscuro
+   pasa a claro sobre fondo oscuro con el mismo contraste relativo; los avisos (sky,
+   emerald, amber, red) invierten igual su fondo, borde y texto. Los `--dia-*` guardan el
+   valor original (se resuelven en `:root`), porque una variable no puede referirse a sí
+   misma. El acento de noche lo inyecta el armazón (`derivarTokensAcentoNoche`, que
+   garantiza 4.5:1). Requiere `light-dark()` (navegadores de 2024 en adelante). */
+:root {
+  --dia-white: var(--color-white);
+  --dia-slate-50: var(--color-slate-50);
+  --dia-slate-100: var(--color-slate-100);
+  --dia-slate-200: var(--color-slate-200);
+  --dia-slate-300: var(--color-slate-300);
+  --dia-slate-400: var(--color-slate-400);
+  --dia-slate-500: var(--color-slate-500);
+  --dia-slate-600: var(--color-slate-600);
+  --dia-slate-700: var(--color-slate-700);
+  --dia-slate-800: var(--color-slate-800);
+  --dia-slate-900: var(--color-slate-900);
+  --dia-slate-950: var(--color-slate-950);
+  --dia-sky-50: var(--color-sky-50);
+  --dia-sky-100: var(--color-sky-100);
+  --dia-sky-200: var(--color-sky-200);
+  --dia-sky-600: var(--color-sky-600);
+  --dia-sky-700: var(--color-sky-700);
+  --dia-sky-800: var(--color-sky-800);
+  --dia-sky-900: var(--color-sky-900);
+  --dia-emerald-50: var(--color-emerald-50);
+  --dia-emerald-100: var(--color-emerald-100);
+  --dia-emerald-200: var(--color-emerald-200);
+  --dia-emerald-600: var(--color-emerald-600);
+  --dia-emerald-700: var(--color-emerald-700);
+  --dia-emerald-800: var(--color-emerald-800);
+  --dia-emerald-900: var(--color-emerald-900);
+  --dia-amber-50: var(--color-amber-50);
+  --dia-amber-100: var(--color-amber-100);
+  --dia-amber-200: var(--color-amber-200);
+  --dia-amber-600: var(--color-amber-600);
+  --dia-amber-700: var(--color-amber-700);
+  --dia-amber-800: var(--color-amber-800);
+  --dia-amber-900: var(--color-amber-900);
+  --dia-red-50: var(--color-red-50);
+  --dia-red-100: var(--color-red-100);
+  --dia-red-200: var(--color-red-200);
+  --dia-red-600: var(--color-red-600);
+  --dia-red-700: var(--color-red-700);
+  --dia-red-800: var(--color-red-800);
+  --dia-red-900: var(--color-red-900);
+}
+
+[data-tema] {
+  color-scheme: light dark;
+  /* El texto sin clase propia hereda del `body` (#0f172a): se reancla aquí. */
+  color: var(--color-slate-900);
+  --color-white: light-dark(var(--dia-white), #0f172a);
+  --color-slate-50: light-dark(var(--dia-slate-50), #020617);
+  --color-slate-100: light-dark(var(--dia-slate-100), #1e293b);
+  --color-slate-200: light-dark(var(--dia-slate-200), #334155);
+  --color-slate-300: light-dark(var(--dia-slate-300), #475569);
+  --color-slate-400: light-dark(var(--dia-slate-400), #64748b);
+  --color-slate-500: light-dark(var(--dia-slate-500), #94a3b8);
+  --color-slate-600: light-dark(var(--dia-slate-600), #cbd5e1);
+  --color-slate-700: light-dark(var(--dia-slate-700), #e2e8f0);
+  --color-slate-800: light-dark(var(--dia-slate-800), #f1f5f9);
+  --color-slate-900: light-dark(var(--dia-slate-900), #f8fafc);
+  --color-slate-950: light-dark(var(--dia-slate-950), #ffffff);
+  --color-sky-50: light-dark(var(--dia-sky-50), #082f49);
+  --color-sky-100: light-dark(var(--dia-sky-100), #0c4a6e);
+  --color-sky-200: light-dark(var(--dia-sky-200), #075985);
+  --color-sky-600: light-dark(var(--dia-sky-600), #38bdf8);
+  --color-sky-700: light-dark(var(--dia-sky-700), #7dd3fc);
+  --color-sky-800: light-dark(var(--dia-sky-800), #bae6fd);
+  --color-sky-900: light-dark(var(--dia-sky-900), #e0f2fe);
+  --color-emerald-50: light-dark(var(--dia-emerald-50), #022c22);
+  --color-emerald-100: light-dark(var(--dia-emerald-100), #064e3b);
+  --color-emerald-200: light-dark(var(--dia-emerald-200), #065f46);
+  --color-emerald-600: light-dark(var(--dia-emerald-600), #34d399);
+  --color-emerald-700: light-dark(var(--dia-emerald-700), #6ee7b7);
+  --color-emerald-800: light-dark(var(--dia-emerald-800), #a7f3d0);
+  --color-emerald-900: light-dark(var(--dia-emerald-900), #d1fae5);
+  --color-amber-50: light-dark(var(--dia-amber-50), #451a03);
+  --color-amber-100: light-dark(var(--dia-amber-100), #78350f);
+  --color-amber-200: light-dark(var(--dia-amber-200), #92400e);
+  --color-amber-600: light-dark(var(--dia-amber-600), #fbbf24);
+  --color-amber-700: light-dark(var(--dia-amber-700), #fcd34d);
+  --color-amber-800: light-dark(var(--dia-amber-800), #fde68a);
+  --color-amber-900: light-dark(var(--dia-amber-900), #fef3c7);
+  --color-red-50: light-dark(var(--dia-red-50), #450a0a);
+  --color-red-100: light-dark(var(--dia-red-100), #7f1d1d);
+  --color-red-200: light-dark(var(--dia-red-200), #991b1b);
+  --color-red-600: light-dark(var(--dia-red-600), #f87171);
+  --color-red-700: light-dark(var(--dia-red-700), #fca5a5);
+  --color-red-800: light-dark(var(--dia-red-800), #fecaca);
+  --color-red-900: light-dark(var(--dia-red-900), #fee2e2);
+}
+[data-tema='claro'] {
+  color-scheme: light;
+}
+[data-tema='oscuro'] {
+  color-scheme: dark;
+}
+/* El hueco del anillo de foco (`ring-offset-*`) es una propiedad registrada que no se
+   hereda y vale `#fff` por defecto: sin esto, en noche se vería un halo blanco. */
+[data-tema] * {
+  --tw-ring-offset-color: var(--color-white);
+}

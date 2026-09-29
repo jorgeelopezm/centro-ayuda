@@ -1,0 +1,27 @@
+# PostgreSQL con la extensión pgvector para el Centro de Ayuda.
+# Levantar con:  docker compose up -d
+
+services:
+  db:
+    image: pgvector/pgvector:pg16
+    environment:
+      POSTGRES_USER: helpcenter
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-helpcenter}
+      POSTGRES_DB: helpcenter
+    ports:
+      # Solo loopback. Con "5432:5432" el contenedor escucha en 0.0.0.0 y queda
+      # accesible desde toda la red local con credenciales de desarrollo.
+      # Consecuencia: publica únicamente en IPv4, así que la cadena de conexión
+      # debe usar 127.0.0.1 y no localhost (en Windows, localhost prueba ::1
+      # primero y la conexión tarda más de dos minutos en caer a IPv4).
+      - "127.0.0.1:5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U helpcenter"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  pgdata:

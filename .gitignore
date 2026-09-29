@@ -1,0 +1,39 @@
+/graphify-out
+
+# Frontend (Node)
+node_modules/
+app/dist/
+
+# Frontend (Next.js)
+app/.next/
+app/next-env.d.ts
+app/*.tsbuildinfo
+
+# Backend (Python)
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+.pytest_cache/
+
+# Volcados locales de salida de tests
+py_out.txt
+pytest_out.txt
+
+# Entorno / secretos
+.env
+api/.env
+
+# Datos exportados para el seed (se regeneran con el script de exportación)
+api/seed_data/*.json
+
+# OpenSpec (especificaciones y flujo de cambios; no se versionan)
+/openspec/
+
+# Claude Code local: comandos opsx y skills de OpenSpec
+/.claude/commands/
+/.claude/skills/openspec-*/
+
+# Superpowers: Redundante con plans y openspec, no se versiona
+docs/superpowers/

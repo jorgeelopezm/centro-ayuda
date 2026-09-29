@@ -1,0 +1,950 @@
+{
+  "modo": "ci",
+  "generado_en": "2026-09-29T16:02:14Z",
+  "proveedor": "doble-determinista",
+  "modelo": "n/a",
+  "metricas": {
+    "total": 44,
+    "exactitud_veredicto": 1.0,
+    "precision_citas": 1.0,
+    "recall_citas": 1.0,
+    "longitud_media": 128.44,
+    "pasos_en_formato_correcto": 1.0,
+    "latencia_media_ms": 3.73,
+    "coste_total_usd_estimado": 0.0,
+    "por_veredicto": {
+      "respondida": {
+        "esperados": 16,
+        "aciertos": 16
+      },
+      "sin_resultados": {
+        "esperados": 10,
+        "aciertos": 10
+      },
+      "fuera_de_scope": {
+        "esperados": 14,
+        "aciertos": 14
+      },
+      "escalar": {
+        "esperados": 4,
+        "aciertos": 4
+      }
+    }
+  },
+  "por_idioma": {
+    "es": {
+      "total": 22,
+      "exactitud_veredicto": 1.0,
+      "precision_citas": 1.0,
+      "recall_citas": 1.0,
+      "longitud_media": 130.25,
+      "pasos_en_formato_correcto": 1.0,
+      "latencia_media_ms": 4.45,
+      "coste_total_usd_estimado": 0.0,
+      "por_veredicto": {
+        "respondida": {
+          "esperados": 8,
+          "aciertos": 8
+        },
+        "sin_resultados": {
+          "esperados": 5,
+          "aciertos": 5
+        },
+        "fuera_de_scope": {
+          "esperados": 7,
+          "aciertos": 7
+        },
+        "escalar": {
+          "esperados": 2,
+          "aciertos": 2
+        }
+      }
+    },
+    "pt": {
+      "total": 22,
+      "exactitud_veredicto": 1.0,
+      "precision_citas": 1.0,
+      "recall_citas": 1.0,
+      "longitud_media": 126.62,
+      "pasos_en_formato_correcto": 1.0,
+      "latencia_media_ms": 3.0,
+      "coste_total_usd_estimado": 0.0,
+      "por_veredicto": {
+        "respondida": {
+          "esperados": 8,
+          "aciertos": 8
+        },
+        "sin_resultados": {
+          "esperados": 5,
+          "aciertos": 5
+        },
+        "fuera_de_scope": {
+          "esperados": 7,
+          "aciertos": 7
+        },
+        "escalar": {
+          "esperados": 2,
+          "aciertos": 2
+        }
+      }
+    }
+  },
+  "casos": [
+    {
+      "id": "es-001",
+      "idioma": "es",
+      "veredicto_esperado": "respondida",
+      "veredicto_obtenido": "respondida",
+      "citas_esperadas": [
+        "cancelar-suscripcion"
+      ],
+      "citas_obtenidas": [
+        "cancelar-suscripcion"
+      ],
+      "longitud": 117,
+      "latencia_ms": 22,
+      "tokens_entrada": null,
+      "tokens_salida": null,
+      "coste_estimado_usd": 0.0,
+      "debe_contener_pasos": true,
+      "pasos_correctos": true,
+      "longitud_max": 320,
+      "dentro_de_longitud": true,
+      "error": null
+    },
+    {
+      "id": "es-002",
+      "idioma": "es",
+      "veredicto_esperado": "respondida",
+      "veredicto_obtenido": "respondida",
+      "citas_esperadas": [
+        "restablecer-contrasena"
+      ],
+      "citas_obtenidas": [
+        "restablecer-contrasena"
+      ],
+      "longitud": 149,
+      "latencia_ms": 5,
+      "tokens_entrada": null,
+      "tokens_salida": null,
+      "coste_estimado_usd": 0.0,
+      "debe_contener_pasos": true,
+      "pasos_correctos": true,
+      "longitud_max": 320,
+      "dentro_de_longitud": true,
+      "error": null
+    },
+    {
+      "id": "es-003",
+      "idioma": "es",
+      "veredicto_esperado": "respondida",
+      "veredicto_obtenido": "respondida",
+      "citas_esperadas": [
+        "cambiar-plan"
+      ],
+      "citas_obtenidas": [
+        "cambiar-plan"
+      ],
+      "longitud": 129,
+      "latencia_ms": 8,
+      "tokens_entrada": null,
+      "tokens_salida": null,
+      "coste_estimado_usd": 0.0,
+      "debe_contener_pasos": true,
+      "pasos_correctos": true,
+      "longitud_max": 320,
+      "dentro_de_longitud": true,
+      "error": null
+    },
+    {
+      "id": "es-004",
+      "idioma": "es",
+      "veredicto_esperado": "respondida",
+      "veredicto_obtenido": "respondida",
+      "citas_esperadas": [
+        "actualizar-datos"
+      ],
+      "citas_obtenidas": [
+        "actualizar-datos"
+      ],
+      "longitud": 125,
+      "latencia_ms": 6,
+      "tokens_entrada": null,
+      "tokens_salida": null,
+      "coste_estimado_usd": 0.0,
+      "debe_contener_pasos": true,
+      "pasos_correctos": true,
+      "longitud_max": 320,
+      "dentro_de_longitud": true,
+      "error": null
+    },
+    {
+      "id": "es-005",
+      "idioma": "es",
+      "veredicto_esperado": "respondida",
+      "veredicto_obtenido": "respondida",
+      "citas_esperadas": [
+        "exportar-datos"
+      ],
+      "citas_obtenidas": [
+        "exportar-datos"
+      ],
+      "longitud": 154,
+      "latencia_ms": 6,
+      "tokens_entrada": null,
+      "tokens_salida": null,
+      "coste_estimado_usd": 0.0,
+      "debe_contener_pasos": true,
+      "pasos_correctos": true,
+      "longitud_max": 320,
+      "dentro_de_longitud": true,
+      "error": null
+    },
+    {
+      "id": "es-006",
+      "idioma": "es",
+      "veredicto_esperado": "respondida",
+      "veredicto_obtenido": "respondida",
+      "citas_esperadas": [
+        "activar-notificaciones"
+      ],
+      "citas_obtenidas": [
+        "activar-notificaciones"
+      ],
+      "longitud": 144,
+      "latencia_ms": 5,
+      "tokens_entrada": null,
+      "tokens_salida": null,
+      "coste_estimado_usd": 0.0,
+      "debe_contener_pasos": true,
+      "pasos_correctos": true,
+      "longitud_max": 320,
+      "dentro_de_longitud": true,
+      "error": null
+    },
+    {
+      "id": "es-007",
+      "idioma": "es",
+      "veredicto_esperado": "respondida",
+      "veredicto_obtenido": "respondida",
+      "citas_esperadas": [
+        "invitar-colaboradores"
+      ],
+      "citas_obtenidas": [
+        "invitar-colaboradores"
+      ],
+      "longitud": 142,
+      "latencia_ms": 5,
+      "tokens_entrada": null,
+      "tokens_salida": null,
+      "coste_estimado_usd": 0.0,
+      "debe_contener_pasos": true,
+      "pasos_correctos": true,
+      "longitud_max": 320,
+      "dentro_de_longitud": true,
+      "error": null
+    },
+    {
+      "id": "es-008",
+      "idioma": "es",
+      "veredicto_esperado": "respondida",
+      "veredicto_obtenido": "respondida",
+      "citas_esperadas": [
+        "configurar-idioma"
+      ],
+      "citas_obtenidas": [
+        "configurar-idioma"
+      ],
+      "longitud": 82,
+      "latencia_ms": 5,
+      "tokens_entrada": null,
+      "tokens_salida": null,
+      "coste_estimado_usd": 0.0,
+      "debe_contener_pasos": false,
+      "pasos_correctos": true,
+      "longitud_max": 200,
+      "dentro_de_longitud": true,
+      "error": null
+    },
+    {
+      "id": "es-009",
+      "idioma": "es",
+      "veredicto_esperado": "sin_resultados",
+      "veredicto_obtenido": "sin_resultados",
+      "citas_esperadas": [],
+      "citas_obtenidas": [],
+      "longitud": 106,
+      "latencia_ms": 5,
+      "tokens_entrada": null,
+      "tokens_salida": null,
+      "coste_estimado_usd": 0.0,
+      "debe_contener_pasos": false,
+      "pasos_correctos": true,
+      "longitud_max": null,
+      "dentro_de_longitud": true,
+      "error": null
+    },
+    {
+      "id": "es-010",
+      "idioma": "es",
+      "veredicto_esperado": "sin_resultados",
+      "veredicto_obtenido": "sin_resultados",
+      "citas_esperadas": [],
+      "citas_obtenidas": [],
+      "longitud": 106,
+      "latencia_ms": 5,
+      "tokens_entrada": null,
+      "tokens_salida": null,
+      "coste_estimado_usd": 0.0,
+      "debe_contener_pasos": false,
+      "pasos_correctos": true,
+      "longitud_max": null,
+      "dentro_de_longitud": true,
+      "error": null
+    },
+    {
+      "id": "es-011",
+      "idioma": "es",
+      "veredicto_esperado": "sin_resultados",
+      "veredicto_obtenido": "sin_resultados",
+      "citas_esperadas": [],
+      "citas_obtenidas": [],
+      "longitud": 106,
+      "latencia_ms": 4,
+      "tokens_entrada": null,
+      "tokens_salida": null,
+      "coste_estimado_usd": 0.0,
+      "debe_contener_pasos": false,
+      "pasos_correctos": true,
+      "longitud_max": null,
+      "dentro_de_longitud": true,
+      "error": null
+    },
+    {
+      "id": "es-012",
+      "idioma": "es",
+      "veredicto_esperado": "sin_resultados",
+      "veredicto_obtenido": "sin_resultados",
+      "citas_esperadas": [],
+      "citas_obtenidas": [],
+      "longitud": 106,
+      "latencia_ms": 5,
+      "tokens_entrada": null,
+      "tokens_salida": null,
+      "coste_estimado_usd": 0.0,
+      "debe_contener_pasos": false,
+      "pasos_correctos": true,
+      "longitud_max": null,
+      "dentro_de_longitud": true,
+      "error": null
+    },
+    {
+      "id": "es-013",
+      "idioma": "es",
+      "veredicto_esperado": "sin_resultados",
+      "veredicto_obtenido": "sin_resultados",
+      "citas_esperadas": [],
+      "citas_obtenidas": [],
+      "longitud": 106,
+      "latencia_ms": 4,
+      "tokens_entrada": null,
+      "tokens_salida": null,
+      "coste_estimado_usd": 0.0,
+      "debe_contener_pasos": false,
+      "pasos_correctos": true,
+      "longitud_max": null,
+      "dentro_de_longitud": true,
+      "error": null
+    },
+    {
+      "id": "es-014",
+      "idioma": "es",
+      "veredicto_esperado": "fuera_de_scope",
+      "veredicto_obtenido": "fuera_de_scope",
+      "citas_esperadas": [],
+      "citas_obtenidas": [],
+      "longitud": 116,
+      "latencia_ms": 1,
+      "tokens_entrada": null,
+      "tokens_salida": null,
+      "coste_estimado_usd": 0.0,
+      "debe_contener_pasos": false,
+      "pasos_correctos": true,
+      "longitud_max": null,
+      "dentro_de_longitud": true,
+      "error": null
+    },
+    {
+      "id": "es-015",
+      "idioma": "es",
+      "veredicto_esperado": "fuera_de_scope",
+      "veredicto_obtenido": "fuera_de_scope",
+      "citas_esperadas": [],
+      "citas_obtenidas": [],
+      "longitud": 116,
+      "latencia_ms": 1,
+      "tokens_entrada": null,
+      "tokens_salida": null,
+      "coste_estimado_usd": 0.0,
+      "debe_contener_pasos": false,
+      "pasos_correctos": true,
+      "longitud_max": null,
+      "dentro_de_longitud": true,
+      "error": null
+    },
+    {
+      "id": "es-016",
+      "idioma": "es",
+      "veredicto_esperado": "fuera_de_scope",
+      "veredicto_obtenido": "fuera_de_scope",
+      "citas_esperadas": [],
+      "citas_obtenidas": [],
+      "longitud": 116,
+      "latencia_ms": 1,
+      "tokens_entrada": null,
+      "tokens_salida": null,
+      "coste_estimado_usd": 0.0,
+      "debe_contener_pasos": false,
+      "pasos_correctos": true,
+      "longitud_max": null,
+      "dentro_de_longitud": true,
+      "error": null
+    },
+    {
+      "id": "es-017",
+      "idioma": "es",
+      "veredicto_esperado": "fuera_de_scope",
+      "veredicto_obtenido": "fuera_de_scope",
+      "citas_esperadas": [],
+      "citas_obtenidas": [],
+      "longitud": 116,
+      "latencia_ms": 1,
+      "tokens_entrada": null,
+      "tokens_salida": null,
+      "coste_estimado_usd": 0.0,
+      "debe_contener_pasos": false,
+      "pasos_correctos": true,
+      "longitud_max": null,
+      "dentro_de_longitud": true,
+      "error": null
+    },
+    {
+      "id": "es-018",
+      "idioma": "es",
+      "veredicto_esperado": "fuera_de_scope",
+      "veredicto_obtenido": "fuera_de_scope",
+      "citas_esperadas": [],
+      "citas_obtenidas": [],
+      "longitud": 116,
+      "latencia_ms": 1,
+      "tokens_entrada": null,
+      "tokens_salida": null,
+      "coste_estimado_usd": 0.0,
+      "debe_contener_pasos": false,
+      "pasos_correctos": true,
+      "longitud_max": null,
+      "dentro_de_longitud": true,
+      "error": null
+    },
+    {
+      "id": "es-019",
+      "idioma": "es",
+      "veredicto_esperado": "escalar",
+      "veredicto_obtenido": "escalar",
+      "citas_esperadas": [],
+      "citas_obtenidas": [],
+      "longitud": 55,
+      "latencia_ms": 3,
+      "tokens_entrada": null,
+      "tokens_salida": null,
+      "coste_estimado_usd": 0.0,
+      "debe_contener_pasos": false,
+      "pasos_correctos": true,
+      "longitud_max": null,
+      "dentro_de_longitud": true,
+      "error": null
+    },
+    {
+      "id": "es-020",
+      "idioma": "es",
+      "veredicto_esperado": "escalar",
+      "veredicto_obtenido": "escalar",
+      "citas_esperadas": [],
+      "citas_obtenidas": [],
+      "longitud": 55,
+      "latencia_ms": 1,
+      "tokens_entrada": null,
+      "tokens_salida": null,
+      "coste_estimado_usd": 0.0,
+      "debe_contener_pasos": false,
+      "pasos_correctos": true,
+      "longitud_max": null,
+      "dentro_de_longitud": true,
+      "error": null
+    },
+    {
+      "id": "es-021",
+      "idioma": "es",
+      "veredicto_esperado": "fuera_de_scope",
+      "veredicto_obtenido": "fuera_de_scope",
+      "citas_esperadas": [],
+      "citas_obtenidas": [],
+      "longitud": 116,
+      "latencia_ms": 2,
+      "tokens_entrada": null,
+      "tokens_salida": null,
+      "coste_estimado_usd": 0.0,
+      "debe_contener_pasos": false,
+      "pasos_correctos": true,
+      "longitud_max": null,
+      "dentro_de_longitud": true,
+      "error": null
+    },
+    {
+      "id": "es-022",
+      "idioma": "es",
+      "veredicto_esperado": "fuera_de_scope",
+      "veredicto_obtenido": "fuera_de_scope",
+      "citas_esperadas": [],
+      "citas_obtenidas": [],
+      "longitud": 116,
+      "latencia_ms": 2,
+      "tokens_entrada": null,
+      "tokens_salida": null,
+      "coste_estimado_usd": 0.0,
+      "debe_contener_pasos": false,
+      "pasos_correctos": true,
+      "longitud_max": null,
+      "dentro_de_longitud": true,
+      "error": null
+    },
+    {
+      "id": "pt-001",
+      "idioma": "pt",
+      "veredicto_esperado": "respondida",
+      "veredicto_obtenido": "respondida",
+      "citas_esperadas": [
+        "cancelar-assinatura"
+      ],
+      "citas_obtenidas": [
+        "cancelar-assinatura"
+      ],
+      "longitud": 117,
+      "latencia_ms": 5,
+      "tokens_entrada": null,
+      "tokens_salida": null,
+      "coste_estimado_usd": 0.0,
+      "debe_contener_pasos": true,
+      "pasos_correctos": true,
+      "longitud_max": 320,
+      "dentro_de_longitud": true,
+      "error": null
+    },
+    {
+      "id": "pt-002",
+      "idioma": "pt",
+      "veredicto_esperado": "respondida",
+      "veredicto_obtenido": "respondida",
+      "citas_esperadas": [
+        "redefinir-senha"
+      ],
+      "citas_obtenidas": [
+        "redefinir-senha"
+      ],
+      "longitud": 139,
+      "latencia_ms": 5,
+      "tokens_entrada": null,
+      "tokens_salida": null,
+      "coste_estimado_usd": 0.0,
+      "debe_contener_pasos": true,
+      "pasos_correctos": true,
+      "longitud_max": 320,
+      "dentro_de_longitud": true,
+      "error": null
+    },
+    {
+      "id": "pt-003",
+      "idioma": "pt",
+      "veredicto_esperado": "respondida",
+      "veredicto_obtenido": "respondida",
+      "citas_esperadas": [
+        "alterar-plano"
+      ],
+      "citas_obtenidas": [
+        "alterar-plano"
+      ],
+      "longitud": 126,
+      "latencia_ms": 4,
+      "tokens_entrada": null,
+      "tokens_salida": null,
+      "coste_estimado_usd": 0.0,
+      "debe_contener_pasos": true,
+      "pasos_correctos": true,
+      "longitud_max": 320,
+      "dentro_de_longitud": true,
+      "error": null
+    },
+    {
+      "id": "pt-004",
+      "idioma": "pt",
+      "veredicto_esperado": "respondida",
+      "veredicto_obtenido": "respondida",
+      "citas_esperadas": [
+        "atualizar-dados"
+      ],
+      "citas_obtenidas": [
+        "atualizar-dados"
+      ],
+      "longitud": 123,
+      "latencia_ms": 3,
+      "tokens_entrada": null,
+      "tokens_salida": null,
+      "coste_estimado_usd": 0.0,
+      "debe_contener_pasos": true,
+      "pasos_correctos": true,
+      "longitud_max": 320,
+      "dentro_de_longitud": true,
+      "error": null
+    },
+    {
+      "id": "pt-005",
+      "idioma": "pt",
+      "veredicto_esperado": "respondida",
+      "veredicto_obtenido": "respondida",
+      "citas_esperadas": [
+        "exportar-dados"
+      ],
+      "citas_obtenidas": [
+        "exportar-dados"
+      ],
+      "longitud": 153,
+      "latencia_ms": 3,
+      "tokens_entrada": null,
+      "tokens_salida": null,
+      "coste_estimado_usd": 0.0,
+      "debe_contener_pasos": true,
+      "pasos_correctos": true,
+      "longitud_max": 320,
+      "dentro_de_longitud": true,
+      "error": null
+    },
+    {
+      "id": "pt-006",
+      "idioma": "pt",
+      "veredicto_esperado": "respondida",
+      "veredicto_obtenido": "respondida",
+      "citas_esperadas": [
+        "ativar-notificacoes"
+      ],
+      "citas_obtenidas": [
+        "ativar-notificacoes"
+      ],
+      "longitud": 134,
+      "latencia_ms": 6,
+      "tokens_entrada": null,
+      "tokens_salida": null,
+      "coste_estimado_usd": 0.0,
+      "debe_contener_pasos": true,
+      "pasos_correctos": true,
+      "longitud_max": 320,
+      "dentro_de_longitud": true,
+      "error": null
+    },
+    {
+      "id": "pt-007",
+      "idioma": "pt",
+      "veredicto_esperado": "respondida",
+      "veredicto_obtenido": "respondida",
+      "citas_esperadas": [
+        "convidar-colaboradores"
+      ],
+      "citas_obtenidas": [
+        "convidar-colaboradores"
+      ],
+      "longitud": 143,
+      "latencia_ms": 6,
+      "tokens_entrada": null,
+      "tokens_salida": null,
+      "coste_estimado_usd": 0.0,
+      "debe_contener_pasos": true,
+      "pasos_correctos": true,
+      "longitud_max": 320,
+      "dentro_de_longitud": true,
+      "error": null
+    },
+    {
+      "id": "pt-008",
+      "idioma": "pt",
+      "veredicto_esperado": "respondida",
+      "veredicto_obtenido": "respondida",
+      "citas_esperadas": [
+        "idiomas-suportados"
+      ],
+      "citas_obtenidas": [
+        "idiomas-suportados"
+      ],
+      "longitud": 78,
+      "latencia_ms": 4,
+      "tokens_entrada": null,
+      "tokens_salida": null,
+      "coste_estimado_usd": 0.0,
+      "debe_contener_pasos": false,
+      "pasos_correctos": true,
+      "longitud_max": 200,
+      "dentro_de_longitud": true,
+      "error": null
+    },
+    {
+      "id": "pt-009",
+      "idioma": "pt",
+      "veredicto_esperado": "sin_resultados",
+      "veredicto_obtenido": "sin_resultados",
+      "citas_esperadas": [],
+      "citas_obtenidas": [],
+      "longitud": 105,
+      "latencia_ms": 4,
+      "tokens_entrada": null,
+      "tokens_salida": null,
+      "coste_estimado_usd": 0.0,
+      "debe_contener_pasos": false,
+      "pasos_correctos": true,
+      "longitud_max": null,
+      "dentro_de_longitud": true,
+      "error": null
+    },
+    {
+      "id": "pt-010",
+      "idioma": "pt",
+      "veredicto_esperado": "sin_resultados",
+      "veredicto_obtenido": "sin_resultados",
+      "citas_esperadas": [],
+      "citas_obtenidas": [],
+      "longitud": 105,
+      "latencia_ms": 3,
+      "tokens_entrada": null,
+      "tokens_salida": null,
+      "coste_estimado_usd": 0.0,
+      "debe_contener_pasos": false,
+      "pasos_correctos": true,
+      "longitud_max": null,
+      "dentro_de_longitud": true,
+      "error": null
+    },
+    {
+      "id": "pt-011",
+      "idioma": "pt",
+      "veredicto_esperado": "sin_resultados",
+      "veredicto_obtenido": "sin_resultados",
+      "citas_esperadas": [],
+      "citas_obtenidas": [],
+      "longitud": 105,
+      "latencia_ms": 3,
+      "tokens_entrada": null,
+      "tokens_salida": null,
+      "coste_estimado_usd": 0.0,
+      "debe_contener_pasos": false,
+      "pasos_correctos": true,
+      "longitud_max": null,
+      "dentro_de_longitud": true,
+      "error": null
+    },
+    {
+      "id": "pt-012",
+      "idioma": "pt",
+      "veredicto_esperado": "sin_resultados",
+      "veredicto_obtenido": "sin_resultados",
+      "citas_esperadas": [],
+      "citas_obtenidas": [],
+      "longitud": 105,
+      "latencia_ms": 4,
+      "tokens_entrada": null,
+      "tokens_salida": null,
+      "coste_estimado_usd": 0.0,
+      "debe_contener_pasos": false,
+      "pasos_correctos": true,
+      "longitud_max": null,
+      "dentro_de_longitud": true,
+      "error": null
+    },
+    {
+      "id": "pt-013",
+      "idioma": "pt",
+      "veredicto_esperado": "sin_resultados",
+      "veredicto_obtenido": "sin_resultados",
+      "citas_esperadas": [],
+      "citas_obtenidas": [],
+      "longitud": 105,
+      "latencia_ms": 5,
+      "tokens_entrada": null,
+      "tokens_salida": null,
+      "coste_estimado_usd": 0.0,
+      "debe_contener_pasos": false,
+      "pasos_correctos": true,
+      "longitud_max": null,
+      "dentro_de_longitud": true,
+      "error": null
+    },
+    {
+      "id": "pt-014",
+      "idioma": "pt",
+      "veredicto_esperado": "fuera_de_scope",
+      "veredicto_obtenido": "fuera_de_scope",
+      "citas_esperadas": [],
+      "citas_obtenidas": [],
+      "longitud": 103,
+      "latencia_ms": 2,
+      "tokens_entrada": null,
+      "tokens_salida": null,
+      "coste_estimado_usd": 0.0,
+      "debe_contener_pasos": false,
+      "pasos_correctos": true,
+      "longitud_max": null,
+      "dentro_de_longitud": true,
+      "error": null
+    },
+    {
+      "id": "pt-015",
+      "idioma": "pt",
+      "veredicto_esperado": "fuera_de_scope",
+      "veredicto_obtenido": "fuera_de_scope",
+      "citas_esperadas": [],
+      "citas_obtenidas": [],
+      "longitud": 103,
+      "latencia_ms": 2,
+      "tokens_entrada": null,
+      "tokens_salida": null,
+      "coste_estimado_usd": 0.0,
+      "debe_contener_pasos": false,
+      "pasos_correctos": true,
+      "longitud_max": null,
+      "dentro_de_longitud": true,
+      "error": null
+    },
+    {
+      "id": "pt-016",
+      "idioma": "pt",
+      "veredicto_esperado": "fuera_de_scope",
+      "veredicto_obtenido": "fuera_de_scope",
+      "citas_esperadas": [],
+      "citas_obtenidas": [],
+      "longitud": 103,
+      "latencia_ms": 1,
+      "tokens_entrada": null,
+      "tokens_salida": null,
+      "coste_estimado_usd": 0.0,
+      "debe_contener_pasos": false,
+      "pasos_correctos": true,
+      "longitud_max": null,
+      "dentro_de_longitud": true,
+      "error": null
+    },
+    {
+      "id": "pt-017",
+      "idioma": "pt",
+      "veredicto_esperado": "fuera_de_scope",
+      "veredicto_obtenido": "fuera_de_scope",
+      "citas_esperadas": [],
+      "citas_obtenidas": [],
+      "longitud": 103,
+      "latencia_ms": 1,
+      "tokens_entrada": null,
+      "tokens_salida": null,
+      "coste_estimado_usd": 0.0,
+      "debe_contener_pasos": false,
+      "pasos_correctos": true,
+      "longitud_max": null,
+      "dentro_de_longitud": true,
+      "error": null
+    },
+    {
+      "id": "pt-018",
+      "idioma": "pt",
+      "veredicto_esperado": "fuera_de_scope",
+      "veredicto_obtenido": "fuera_de_scope",
+      "citas_esperadas": [],
+      "citas_obtenidas": [],
+      "longitud": 103,
+      "latencia_ms": 1,
+      "tokens_entrada": null,
+      "tokens_salida": null,
+      "coste_estimado_usd": 0.0,
+      "debe_contener_pasos": false,
+      "pasos_correctos": true,
+      "longitud_max": null,
+      "dentro_de_longitud": true,
+      "error": null
+    },
+    {
+      "id": "pt-019",
+      "idioma": "pt",
+      "veredicto_esperado": "escalar",
+      "veredicto_obtenido": "escalar",
+      "citas_esperadas": [],
+      "citas_obtenidas": [],
+      "longitud": 53,
+      "latencia_ms": 1,
+      "tokens_entrada": null,
+      "tokens_salida": null,
+      "coste_estimado_usd": 0.0,
+      "debe_contener_pasos": false,
+      "pasos_correctos": true,
+      "longitud_max": null,
+      "dentro_de_longitud": true,
+      "error": null
+    },
+    {
+      "id": "pt-020",
+      "idioma": "pt",
+      "veredicto_esperado": "escalar",
+      "veredicto_obtenido": "escalar",
+      "citas_esperadas": [],
+      "citas_obtenidas": [],
+      "longitud": 53,
+      "latencia_ms": 1,
+      "tokens_entrada": null,
+      "tokens_salida": null,
+      "coste_estimado_usd": 0.0,
+      "debe_contener_pasos": false,
+      "pasos_correctos": true,
+      "longitud_max": null,
+      "dentro_de_longitud": true,
+      "error": null
+    },
+    {
+      "id": "pt-021",
+      "idioma": "pt",
+      "veredicto_esperado": "fuera_de_scope",
+      "veredicto_obtenido": "fuera_de_scope",
+      "citas_esperadas": [],
+      "citas_obtenidas": [],
+      "longitud": 103,
+      "latencia_ms": 1,
+      "tokens_entrada": null,
+      "tokens_salida": null,
+      "coste_estimado_usd": 0.0,
+      "debe_contener_pasos": false,
+      "pasos_correctos": true,
+      "longitud_max": null,
+      "dentro_de_longitud": true,
+      "error": null
+    },
+    {
+      "id": "pt-022",
+      "idioma": "pt",
+      "veredicto_esperado": "fuera_de_scope",
+      "veredicto_obtenido": "fuera_de_scope",
+      "citas_esperadas": [],
+      "citas_obtenidas": [],
+      "longitud": 103,
+      "latencia_ms": 1,
+      "tokens_entrada": null,
+      "tokens_salida": null,
+      "coste_estimado_usd": 0.0,
+      "debe_contener_pasos": false,
+      "pasos_correctos": true,
+      "longitud_max": null,
+      "dentro_de_longitud": true,
+      "error": null
+    }
+  ]
+}

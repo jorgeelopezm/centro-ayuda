@@ -1,0 +1,4 @@
+/* Estilos globales de la app Next. Reutiliza sin cambios los tokens y la base
+   de la SPA (incluye `@import 'tailwindcss'` y el token `--acento`). No se
+   rediseña nada en esta migración. */
+@import '../src/index.css';

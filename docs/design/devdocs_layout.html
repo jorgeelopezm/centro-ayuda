@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevDocs | Developer Documentation</title>
+    
+    <!-- Load Inter Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Load Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <!-- Configure Tailwind Settings -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['Fira Code', 'monospace'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            900: '#1e3a8a',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Scrollbar for a cleaner UI */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+
+        /* Typography tweaks */
+        .prose h1 { @apply text-3xl font-bold text-slate-900 mb-6 pb-2 border-b border-slate-200 mt-8 first:mt-0; }
+        .prose h2 { @apply text-2xl font-semibold text-slate-800 mt-10 mb-4; }
+        .prose h3 { @apply text-xl font-medium text-slate-800 mt-8 mb-3; }
+        .prose p { @apply text-slate-600 leading-relaxed mb-4; }
+        .prose a { @apply text-brand-600 hover:text-brand-900 underline underline-offset-2; }
+        .prose ul { @apply list-disc list-inside text-slate-600 mb-4 space-y-2 ml-4; }
+        .prose li::marker { @apply text-slate-400; }
+        
+        /* Code Block Styling */
+        .prose pre {
+            @apply bg-slate-900 text-slate-50 p-4 rounded-lg overflow-x-auto text-sm font-mono leading-relaxed mb-6 relative group;
+            box-shadow: inset 0 0 0 1px rgba(255,255,255,0.1);
+        }
+        
+        .prose code:not(pre code) {
+            @apply bg-slate-100 text-slate-800 px-1.5 py-0.5 rounded text-sm font-mono border border-slate-200;
+        }
+
+        /* Syntax highlighting simulation classes */
+        .keyword { color: #c678dd; }
+        .string { color: #98c379; }
+        .function { color: #61afef; }
+        .comment { color: #5c6370; font-style: italic; }
+        .operator { color: #56b6c2; }
+        .tag { color: #e06c75; }
+
+        /* Smooth section transitions */
+        .doc-section {
+            display: none;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+        .doc-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Sidebar active link styling */
+        .nav-link.active {
+            @apply bg-brand-50 text-brand-600 font-medium border-l-2 border-brand-500;
+        }
+        .nav-link {
+            @apply border-l-2 border-transparent;
+        }
+    </style>
+</head>
+<body class="bg-white text-slate-800 h-screen flex flex-col overflow-hidden selection:bg-brand-100 selection:text-brand-900">
+
+    <!-- Header -->
+    <header class="h-16 border-b border-slate-200 bg-white flex items-center justify-between px-4 sm:px-6 lg:px-8 shrink-0 z-20 relative">
+        <div class="flex items-center gap-4 w-1/4">
+            <!-- Mobile Menu Toggle -->
+            <button id="mobile-menu-btn" class="lg:hidden text-slate-500 hover:text-slate-700 focus:outline-none p-1 rounded-md hover:bg-slate-100 transition-colors">
+                <i class="ph ph-list text-2xl"></i>
+            </button>
+            
+            <!-- Logo -->
+            <a href="#" class="flex items-center gap-2 text-xl font-bold text-slate-900 tracking-tight">
+                <div class="bg-brand-600 text-white p-1.5 rounded-lg flex items-center justify-center">
+                    <i class="ph ph-terminal-window text-xl"></i>
+                </div>
+                Nexus<span class="text-slate-400 font-normal">Docs</span>
+            </a>
+        </div>
+
+        <!-- Search Bar (Centered) -->
+        <div class="hidden sm:flex flex-1 max-w-md mx-4 relative group">
+            <i class="ph ph-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-brand-500 transition-colors"></i>
+            <input type="text" placeholder="Search documentation... (Press '/')" class="w-full bg-slate-50 border border-slate-200 rounded-full py-2 pl-10 pr-4 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 focus:bg-white transition-all placeholder:text-slate-400">
+            <div class="absolute right-3 top-1/2 -translate-y-1/2 flex items-center gap-1">
+                <kbd class="hidden md:inline-block border border-slate-200 rounded bg-white px-1.5 text-[10px] font-mono text-slate-400 shadow-sm">Ctrl</kbd>
+                <kbd class="hidden md:inline-block border border-slate-200 rounded bg-white px-1.5 text-[10px] font-mono text-slate-400 shadow-sm">K</kbd>
+            </div>
+        </div>
+
+        <!-- Right Actions -->
+        <div class="flex items-center justify-end gap-3 w-1/4">
+            <a href="#" class="text-sm font-medium text-slate-500 hover:text-slate-900 hidden md:block">Support</a>
+            <a href="#" class="text-sm font-medium text-slate-500 hover:text-slate-900 hidden md:block">v2.4.1</a>
+            <div class="w-px h-5 bg-slate-200 hidden md:block mx-1"></div>
+            <button class="text-slate-400 hover:text-slate-700 p-1.5 rounded-md hover:bg-slate-100 transition-colors" title="Theme">
+                <i class="ph ph-moon text-xl"></i>
+            </button>
+            <a href="#" class="text-slate-400 hover:text-slate-700 p-1.5 rounded-md hover:bg-slate-100 transition-colors" title="GitHub">
+                <i class="ph ph-github-logo text-xl"></i>
+            </a>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <div class="flex flex-1 overflow-hidden relative">
+        
+        <!-- Sidebar Navigation -->
+        <aside id="sidebar" class="absolute lg:static inset-y-0 left-0 w-64 bg-slate-50 border-r border-slate-200 transform -translate-x-full lg:translate-x-0 transition-transform duration-300 ease-in-out z-10 flex flex-col h-full">
+            <div class="flex-1 overflow-y-auto py-6 px-4">
+                
+                <!-- Category: Getting Started -->
+                <div class="mb-8">
+                    <h5 class="text-xs font-semibold text-slate-900 uppercase tracking-wider mb-3 px-2">Getting Started</h5>
+                    <ul class="space-y-1">
+                        <li>
+                            <button data-target="sec-introduction" class="nav-link active w-full text-left px-2 py-1.5 text-sm rounded-r-md text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors flex items-center justify-between">
+                                Introduction
+                            </button>
+                        </li>
+                        <li>
+                            <button data-target="sec-installation" class="nav-link w-full text-left px-2 py-1.5 text-sm rounded-r-md text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors">
+                                Installation
+                            </button>
+                        </li>
+                        <li>
+                            <button data-target="sec-configuration" class="nav-link w-full text-left px-2 py-1.5 text-sm rounded-r-md text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors">
+                                Configuration
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Category: Core Concepts -->
+                <div class="mb-8">
+                    <h5 class="text-xs font-semibold text-slate-900 uppercase tracking-wider mb-3 px-2">Core Concepts</h5>
+                    <ul class="space-y-1">
+                        <li>
+                            <button data-target="sec-architecture" class="nav-link w-full text-left px-2 py-1.5 text-sm rounded-r-md text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors">
+                                Architecture
+                            </button>
+                        </li>
+                        <li>
+                            <button data-target="sec-data-models" class="nav-link w-full text-left px-2 py-1.5 text-sm rounded-r-md text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors">
+                                Data Models
+                            </button>
+                        </li>
+                        <li>
+                            <button data-target="sec-routing" class="nav-link w-full text-left px-2 py-1.5 text-sm rounded-r-md text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors">
+                                Routing
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Category: API Reference -->
+                <div class="mb-8">
+                    <h5 class="text-xs font-semibold text-slate-900 uppercase tracking-wider mb-3 px-2">API Reference</h5>
+                    <ul class="space-y-1">
+                        <li>
+                            <button data-target="sec-authentication" class="nav-link w-full text-left px-2 py-1.5 text-sm rounded-r-md text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors">
+                                Authentication
+                            </button>
+                        </li>
+                        <li>
+                            <button data-target="sec-endpoints" class="nav-link w-full text-left px-2 py-1.5 text-sm rounded-r-md text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors flex justify-between items-center">
+                                Endpoints
+                                <span class="bg-brand-100 text-brand-600 text-[10px] font-bold px-1.5 py-0.5 rounded">NEW</span>
+                            </button>
+                        </li>
+                        <li>
+                            <button data-target="sec-errors" class="nav-link w-full text-left px-2 py-1.5 text-sm rounded-r-md text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors">
+                                Errors & Handling
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Overlay for mobile sidebar -->
+        <div id="sidebar-overlay" class="fixed inset-0 bg-slate-900/50 z-0 hidden lg:hidden"></div>
+
+        <!-- Content Panel -->
+        <main id="main-content" class="flex-1 overflow-y-auto bg-white relative">
+            
+            <div class="max-w-4xl mx-auto px-6 py-10 lg:px-12 lg:py-12 prose prose-slate">
+                
+                <!-- 1. Introduction Section -->
+                <article id="sec-introduction" class="doc-section active">
+                    <div class="flex items-center gap-2 text-brand-600 text-sm font-semibold mb-2">
+                        <i class="ph ph-book-open"></i> Getting Started
+                    </div>
+                    <h1>Introduction to NexusDocs</h1>
+                    <p class="text-lg text-slate-500 leading-relaxed mb-8">
+                        NexusDocs is a modern, flexible, and powerful framework designed to streamline the development of scalable web applications. It provides a robust set of tools out-of-the-box, allowing you to focus on building features rather than wrestling with configuration.
+                    </p>
+                    
+                    <h2>Key Features</h2>
+                    <ul>
+                        <li><strong>Lightning Fast:</strong> Built on a high-performance core architecture.</li>
+                        <li><strong>Type Safe:</strong> First-class support for TypeScript across all layers.</li>
+                        <li><strong>Modular:</strong> Only import what you need. Keep your bundle size small.</li>
+                        <li><strong>Developer Experience:</strong> Intuitive API, excellent error messages, and hot module replacement.</li>
+                    </ul>
+
+                    <h2>How it works</h2>
+                    <p>
+                        The framework uses a unidirectional data flow combined with a reactive virtual DOM. When state changes, only the affected components are intelligently re-rendered. This ensures optimal performance even in complex data grids or dashboards.
+                    </p>
+
+                    <div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-r-md my-6">
+                        <div class="flex gap-3">
+                            <i class="ph ph-info text-blue-500 text-xl mt-0.5"></i>
+                            <div>
+                                <h4 class="text-sm font-bold text-blue-900 m-0 mb-1">Prerequisites</h4>
+                                <p class="text-sm text-blue-800 m-0">Ensure you have Node.js v16.0 or higher installed before proceeding to the installation phase.</p>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 2. Installation Section -->
+                <article id="sec-installation" class="doc-section">
+                    <div class="flex items-center gap-2 text-brand-600 text-sm font-semibold mb-2">
+                        <i class="ph ph-download-simple"></i> Getting Started
+                    </div>
+                    <h1>Installation</h1>
+                    <p>
+                        Getting up and running with NexusDocs is incredibly straightforward. You can use your favorite package manager to scaffold a new project.
+                    </p>
+
+                    <h2>Creating a new project</h2>
+                    <p>We recommend using our CLI tool to bootstrap your application. It sets up the directory structure, configuration files, and testing framework automatically.</p>
+                    
+                    <div class="relative group">
+                        <button class="copy-btn absolute right-2 top-2 bg-slate-700/50 hover:bg-slate-700 text-slate-300 p-1.5 rounded text-xs flex items-center gap-1 transition-colors z-10" onclick="copyCode(this)">
+                            <i class="ph ph-copy"></i> Copy
+                        </button>
+                        <pre><code><span class="comment"># Using npm</span>
+<span class="function">npx</span> create-nexus-app@latest my-app
+
+<span class="comment"># Using yarn</span>
+<span class="function">yarn</span> create nexus-app my-app
+
+<span class="comment"># Using pnpm</span>
+<span class="function">pnpm</span> create nexus-app my-app</code></pre>
+                    </div>
+
+                    <h2>Manual Installation</h2>
+                    <p>If you prefer to integrate NexusDocs into an existing project, install the core packages directly:</p>
+
+                    <div class="relative group">
+                        <button class="copy-btn absolute right-2 top-2 bg-slate-700/50 hover:bg-slate-700 text-slate-300 p-1.5 rounded text-xs flex items-center gap-1 transition-colors z-10" onclick="copyCode(this)">
+                            <i class="ph ph-copy"></i> Copy
+                        </button>
+                        <pre><code><span class="function">npm</span> install @nexus/core @nexus/router react react-dom</code></pre>
+                    </div>
+
+                    <p>Next, configure your <code>nexus.config.js</code> file in the root directory:</p>
+
+                    <div class="relative group">
+                        <button class="copy-btn absolute right-2 top-2 bg-slate-700/50 hover:bg-slate-700 text-slate-300 p-1.5 rounded text-xs flex items-center gap-1 transition-colors z-10" onclick="copyCode(this)">
+                            <i class="ph ph-copy"></i> Copy
+                        </button>
+                        <pre><code><span class="keyword">import</span> { defineConfig } <span class="keyword">from</span> <span class="string">'@nexus/core'</span>;
+
+<span class="keyword">export default</span> <span class="function">defineConfig</span>({
+  <span class="tag">server</span>: {
+    <span class="tag">port</span>: <span class="operator">3000</span>,
+    <span class="tag">cors</span>: <span class="keyword">true</span>
+  },
+  <span class="tag">plugins</span>: []
+});</code></pre>
+                    </div>
+                </article>
+
+                <!-- 3. Configuration Section -->
+                <article id="sec-configuration" class="doc-section">
+                    <div class="flex items-center gap-2 text-brand-600 text-sm font-semibold mb-2">
+                        <i class="ph ph-gear"></i> Getting Started
+                    </div>
+                    <h1>Configuration</h1>
+                    <p>Customize the behavior of your application using environment variables and configuration files.</p>
+                    <p><em>(Mock content for Configuration - switch to another tab to explore)</em></p>
+                </article>
+
+                <!-- 4. Architecture Section -->
+                <article id="sec-architecture" class="doc-section">
+                    <div class="flex items-center gap-2 text-brand-600 text-sm font-semibold mb-2">
+                        <i class="ph ph-tree-structure"></i> Core Concepts
+                    </div>
+                    <h1>Architecture Overview</h1>
+                    <p>Understand the mental model and the building blocks of a Nexus application.</p>
+                </article>
+                
+                 <!-- 5. Data Models Section -->
+                 <article id="sec-data-models" class="doc-section">
+                    <div class="flex items-center gap-2 text-brand-600 text-sm font-semibold mb-2">
+                        <i class="ph ph-database"></i> Core Concepts
+                    </div>
+                    <h1>Data Models</h1>
+                    <p>Defining schemas and interacting with the ORM layer.</p>
+                </article>
+
+                <!-- 6. Routing Section -->
+                <article id="sec-routing" class="doc-section">
+                    <div class="flex items-center gap-2 text-brand-600 text-sm font-semibold mb-2">
+                        <i class="ph ph-git-merge"></i> Core Concepts
+                    </div>
+                    <h1>File-based Routing</h1>
+                    <p>How pages and API routes are automatically generated from your folder structure.</p>
+                </article>
+
+                <!-- 7. Authentication Section -->
+                <article id="sec-authentication" class="doc-section">
+                    <div class="flex items-center gap-2 text-brand-600 text-sm font-semibold mb-2">
+                        <i class="ph ph-lock-key"></i> API Reference
+                    </div>
+                    <h1>Authentication</h1>
+                    <p>Implementing JWT, OAuth, and Session-based authentication strategies.</p>
+                </article>
+
+                <!-- 8. Endpoints Section -->
+                <article id="sec-endpoints" class="doc-section">
+                    <div class="flex items-center gap-2 text-brand-600 text-sm font-semibold mb-2">
+                        <i class="ph ph-plugs-connected"></i> API Reference
+                    </div>
+                    <h1>REST API Endpoints</h1>
+                    <p>Detailed specification of the available REST API endpoints for user management.</p>
+
+                    <div class="overflow-x-auto my-8 border border-slate-200 rounded-lg shadow-sm">
+                        <table class="w-full text-left border-collapse text-sm">
+                            <thead>
+                                <tr class="bg-slate-50 border-b border-slate-200">
+                                    <th class="py-3 px-4 font-semibold text-slate-800 w-24">Method</th>
+                                    <th class="py-3 px-4 font-semibold text-slate-800">Endpoint</th>
+                                    <th class="py-3 px-4 font-semibold text-slate-800">Description</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-200">
+                                <tr class="hover:bg-slate-50 transition-colors">
+                                    <td class="py-3 px-4"><span class="bg-emerald-100 text-emerald-700 font-bold px-2 py-1 rounded text-xs">GET</span></td>
+                                    <td class="py-3 px-4 font-mono text-slate-600">/api/v1/users</td>
+                                    <td class="py-3 px-4 text-slate-600">Retrieve a paginated list of users.</td>
+                                </tr>
+                                <tr class="hover:bg-slate-50 transition-colors">
+                                    <td class="py-3 px-4"><span class="bg-blue-100 text-blue-700 font-bold px-2 py-1 rounded text-xs">POST</span></td>
+                                    <td class="py-3 px-4 font-mono text-slate-600">/api/v1/users</td>
+                                    <td class="py-3 px-4 text-slate-600">Create a new user record.</td>
+                                </tr>
+                                <tr class="hover:bg-slate-50 transition-colors">
+                                    <td class="py-3 px-4"><span class="bg-amber-100 text-amber-700 font-bold px-2 py-1 rounded text-xs">PATCH</span></td>
+                                    <td class="py-3 px-4 font-mono text-slate-600">/api/v1/users/:id</td>
+                                    <td class="py-3 px-4 text-slate-600">Update partial fields of a user.</td>
+                                </tr>
+                                <tr class="hover:bg-slate-50 transition-colors">
+                                    <td class="py-3 px-4"><span class="bg-red-100 text-red-700 font-bold px-2 py-1 rounded text-xs">DELETE</span></td>
+                                    <td class="py-3 px-4 font-mono text-slate-600">/api/v1/users/:id</td>
+                                    <td class="py-3 px-4 text-slate-600">Soft delete a user by ID.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h2>Making a Request</h2>
+                    <p>Here is an example using `fetch` to create a new user.</p>
+
+                    <div class="relative group">
+                        <button class="copy-btn absolute right-2 top-2 bg-slate-700/50 hover:bg-slate-700 text-slate-300 p-1.5 rounded text-xs flex items-center gap-1 transition-colors z-10" onclick="copyCode(this)">
+                            <i class="ph ph-copy"></i> Copy
+                        </button>
+                        <pre><code><span class="keyword">const</span> <span class="function">createUser</span> = <span class="keyword">async</span> () => {
+  <span class="keyword">const</span> response = <span class="keyword">await</span> <span class="function">fetch</span>(<span class="string">'https://api.nexus.dev/v1/users'</span>, {
+    <span class="tag">method</span>: <span class="string">'POST'</span>,
+    <span class="tag">headers</span>: {
+      <span class="string">'Content-Type'</span>: <span class="string">'application/json'</span>,
+      <span class="string">'Authorization'</span>: <span class="string">'Bearer YOUR_API_KEY'</span>
+    },
+    <span class="tag">body</span>: <span class="tag">JSON</span>.<span class="function">stringify</span>({
+      <span class="tag">email</span>: <span class="string">'dev@example.com'</span>,
+      <span class="tag">role</span>: <span class="string">'admin'</span>
+    })
+  });
+
+  <span class="keyword">return</span> response.<span class="function">json</span>();
+};</code></pre>
+                    </div>
+                </article>
+
+                <!-- 9. Errors Section -->
+                <article id="sec-errors" class="doc-section">
+                    <div class="flex items-center gap-2 text-brand-600 text-sm font-semibold mb-2">
+                        <i class="ph ph-warning-circle"></i> API Reference
+                    </div>
+                    <h1>Errors & Handling</h1>
+                    <p>Standardized error formats and status codes returned by the API.</p>
+                </article>
+
+                <!-- Page Footer -->
+                <div class="mt-16 pt-8 border-t border-slate-200 flex flex-col sm:flex-row justify-between items-center gap-4 text-sm text-slate-500">
+                    <div>
+                        Last updated on Sep 26, 2026.
+                    </div>
+                    <div class="flex gap-4">
+                        <a href="#" class="hover:text-slate-900 flex items-center gap-1"><i class="ph ph-pencil-simple"></i> Edit this page</a>
+                        <a href="#" class="hover:text-slate-900 flex items-center gap-1"><i class="ph ph-bug"></i> Report an issue</a>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Application Logic -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // --- 1. Tab / Section Switching Logic ---
+            const navLinks = document.querySelectorAll('.nav-link');
+            const docSections = document.querySelectorAll('.doc-section');
+            const mainContent = document.getElementById('main-content');
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    const targetId = link.getAttribute('data-target');
+                    if (!targetId) return;
+
+                    // Remove active state from all links
+                    navLinks.forEach(l => l.classList.remove('active'));
+                    
+                    // Add active state to clicked link
+                    link.classList.add('active');
+
+                    // Hide all sections
+                    docSections.forEach(sec => {
+                        sec.classList.remove('active');
+                    });
+
+                    // Show target section
+                    const targetSection = document.getElementById(targetId);
+                    if (targetSection) {
+                        targetSection.classList.add('active');
+                        // Scroll back to top of main content
+                        mainContent.scrollTop = 0;
+                    }
+
+                    // Close mobile sidebar if open
+                    if (window.innerWidth < 1024) {
+                        closeSidebar();
+                    }
+                });
+            });
+
+            // --- 2. Mobile Sidebar Toggle Logic ---
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const sidebar = document.getElementById('sidebar');
+            const sidebarOverlay = document.getElementById('sidebar-overlay');
+
+            function openSidebar() {
+                sidebar.classList.remove('-translate-x-full');
+                sidebarOverlay.classList.remove('hidden');
+            }
+
+            function closeSidebar() {
+                sidebar.classList.add('-translate-x-full');
+                sidebarOverlay.classList.add('hidden');
+            }
+
+            mobileMenuBtn.addEventListener('click', openSidebar);
+            sidebarOverlay.addEventListener('click', closeSidebar);
+
+            // Handle resize events to reset sidebar state
+            window.addEventListener('resize', () => {
+                if (window.innerWidth >= 1024) {
+                    sidebar.classList.remove('-translate-x-full');
+                    sidebarOverlay.classList.add('hidden');
+                } else {
+                    if (!sidebarOverlay.classList.contains('hidden')) {
+                        // Keep open if overlay is visible
+                    } else {
+                        sidebar.classList.add('-translate-x-full');
+                    }
+                }
+            });
+        });
+
+        // --- 3. Copy Code to Clipboard Function ---
+        function copyCode(btn) {
+            const pre = btn.nextElementSibling;
+            const codeText = pre.innerText;
+
+            // Use the newer navigator clipboard API if available, fallback to execCommand
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(codeText).then(() => showCopiedState(btn));
+            } else {
+                // Fallback approach
+                const textArea = document.createElement("textarea");
+                textArea.value = codeText;
+                textArea.style.position = "absolute";
+                textArea.style.left = "-999999px";
+                document.body.prepend(textArea);
+                textArea.select();
+                try {
+                    document.execCommand('copy');
+                    showCopiedState(btn);
+                } catch (error) {
+                    console.error(error);
+                } finally {
+                    textArea.remove();
+                }
+            }
+        }
+
+        function showCopiedState(btn) {
+            const originalHTML = btn.innerHTML;
+            btn.innerHTML = '<i class="ph ph-check text-emerald-400"></i> Copied!';
+            btn.classList.add('text-white');
+            setTimeout(() => {
+                btn.innerHTML = originalHTML;
+                btn.classList.remove('text-white');
+            }, 2000);
+        }
+    </script>
+</body>
+</html>
